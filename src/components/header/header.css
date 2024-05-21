@@ -1,32 +1,32 @@
 header {
-  padding: 8px 40px;
-  background-color: #fff;
-  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
+    padding: 8px 40px;
+    background-color: #fff;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
 }
 
 .header__wrapper {
-  width: 100%;
-  max-width: 1360px;
-  margin: 0 auto;
+    width: 100%;
+    max-width: 1360px;
+    margin: 0 auto;
 }
 
 .logo {
-  width: 176px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-left: 15px;
+    width: 176px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 15px;
 }
 
 .logo__image {
-  width: 43px;
-  height: 48px;
-  display: block;
+    width: 43px;
+    height: 48px;
+    display: block;
 }
 
 .logo__text {
-  width: 102px;
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: 500;
+    width: 102px;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
 }

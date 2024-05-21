@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 import './stepProgress.css';
 
-interface IStepProgressProps{
+interface IStepProgressProps {
     completeCount: number,
     totalCount: number,
 }
 
-export function StepProgress({ completeCount, totalCount}: IStepProgressProps) {
+export function StepProgress({ completeCount, totalCount }: IStepProgressProps) {
     return (
         <div className="step-progress">
             <div className="step-progress__header">
@@ -16,9 +16,9 @@ export function StepProgress({ completeCount, totalCount}: IStepProgressProps) {
                 <div className="step-progress__complete">
                     <div className="step-progress__complete-count">{completeCount}</div>
                     <div>из</div>
-                    <div  className="step-progress__total-count">{totalCount}</div>
+                    <div className="step-progress__total-count">{totalCount}</div>
                 </div>
             </div>
         </div>
-    )
+    );
 }

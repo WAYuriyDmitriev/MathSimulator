@@ -1,10 +1,10 @@
-.full-expression{
+.full-expression {
     height: 448px;
     display: flex;
     align-items: center;
 }
 
-.equal{
+.equal {
     /* padding: 20px; */
     display: flex;
     justify-content: center;
@@ -13,7 +13,7 @@
     line-height: 36px;
 }
 
-.hint-slot{
+.hint-slot {
     width: 100%;
     position: absolute;
     left: 50%;
@@ -23,7 +23,7 @@
 
 .hint-slot--up {
     top: 80px;
-    transform: translate(-50%,-100%);
+    transform: translate(-50%, -100%);
 }
 
 .hint-slot--down {
@@ -31,7 +31,7 @@
     transform: translate(-50%, 100%);
 }
 
-.hint{
+.hint {
     padding: 16px 12px;
     font-weight: 600;
     background-color: #FFB84D;
@@ -43,7 +43,7 @@
     background-color: #A6A6A6;
 }
 
-.step{
+.step {
     position: relative;
     height: 100%;
     display: flex;

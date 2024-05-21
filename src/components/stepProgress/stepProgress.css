@@ -1,4 +1,4 @@
-.step-progress{
+.step-progress {
     width: 363px;
     display: flex;
     align-items: center;
@@ -6,7 +6,7 @@
     border-radius: 10px;
 }
 
-.step-progress__header{
+.step-progress__header {
     display: flex;
     justify-content: space-between;
     gap: 10px;
@@ -17,10 +17,10 @@
 }
 
 .step-progress__solved {
-   
+
 }
 
-.step-progress__complete{
+.step-progress__complete {
     display: flex;
     gap: 10px;
 }

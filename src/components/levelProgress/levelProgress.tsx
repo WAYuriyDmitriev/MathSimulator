@@ -1,12 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React from 'react';
 import './levelProgress.css';
 
-interface ILevelProgressProps{
+interface ILevelProgressProps {
     completeCount: number,
     totalCount: number,
 }
 
-export function LevelProgress({ completeCount, totalCount}: ILevelProgressProps) {
+export function LevelProgress({ completeCount, totalCount }: ILevelProgressProps) {
     return (
         <div className="level-progress">
             <div className="level-progress__header">
@@ -24,5 +24,5 @@ export function LevelProgress({ completeCount, totalCount}: ILevelProgressProps)
                 </div>
             </div>
         </div>
-    )
+    );
 }
