@@ -8,7 +8,7 @@ interface IStepProgressProps {
 
 export function StepProgress({ completeCount, totalCount }: IStepProgressProps) {
     return (
-        <div className="step-progress">
+        <div className="step-progress ps-4">
             <div className="step-progress__header">
                 <div className="step-progress__solved">
                     Решено этапов в примере

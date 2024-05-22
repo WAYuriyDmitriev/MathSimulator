@@ -5,6 +5,8 @@ import { Link, useParams } from 'react-router-dom';
 import { ErrorPopup, SuccessPopup } from '../../components/messagePopup/messagePopup';
 import LevelT4 from '../../components/levels/level-T4/level-T4';
 import './levelPage.css';
+import { LevelEnum } from './models';
+import LevelT5 from '../../components/levels/level-T5';
 
 export function LevelPage() {
     const [stepCompleteCount, setStepCompleteCount] = useState(0);
@@ -13,18 +15,23 @@ export function LevelPage() {
     const [isCompleteLevel, setIsCompleteLevel] = useState(false);
 
     const { id } = useParams();
-    const levels = [
-        LevelT4,
-    ];
-    const CurrentLevel = levels[Number(id)];
-    const currentLevelElement = CurrentLevel ? <CurrentLevel onCompleteStep={(step, totalSteps) => {
-        setStepCompleteCount(step - 1);
-        setTotalStepsCount(totalSteps);
-    }} onCompleteLevel={() => {
-        setIsCompleteLevel(true);
-    }} onChangeCorrectStepState={(step, state) => {
-        setIsActiveHint(state == 'incorrect');
-    }}></CurrentLevel> : 'Уровень не найден';
+    const levels = new Map([
+        [LevelEnum.T5, LevelT5],
+    ]);
+    const CurrentLevel = levels.get(id as LevelEnum);
+    const currentLevelElement = CurrentLevel
+        ? <CurrentLevel
+            onCompleteStep={(step, totalSteps) => {
+                setStepCompleteCount(step - 1);
+                setTotalStepsCount(totalSteps);
+            }}
+            onCompleteLevel={() => {
+                setIsCompleteLevel(true);
+            }}
+            onChangeCorrectStepState={(step, state) => {
+                setIsActiveHint(state == 'incorrect');
+            }}></CurrentLevel>
+        : 'Уровень не найден';
 
     return (
         <>
@@ -37,13 +44,11 @@ export function LevelPage() {
                             <p className="level-path__item">Умножение.</p>
                         </div>
                     </div>
-                    <div className="status-bar__progress progress">
-                        <LevelProgress completeCount={0} totalCount={15} />
-                        <StepProgress completeCount={stepCompleteCount} totalCount={totalStepsCount - 1} />
-                        <button
-                            className={`progress__button progress__button--hint ${isActiveHint ? 'progress__button--hint-active' : ''}`}>
-                            <span>Подсказка</span>
-                        </button>
+                    <div className="status-bar__progress progress-math">
+                        <div className="d-flex">
+                            <LevelProgress completeCount={0} totalCount={15} />
+                            <StepProgress completeCount={stepCompleteCount} totalCount={totalStepsCount - 1} />
+                        </div>
                         <button
                             className={`progress__button progress__button--next-level ${isCompleteLevel ? '' : 'progress__button--inactive'}`}>
                             <span>Следующий пример</span>

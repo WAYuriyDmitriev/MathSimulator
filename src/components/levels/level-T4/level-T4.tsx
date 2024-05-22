@@ -7,15 +7,10 @@ import Step2 from './step2';
 import Step3 from './step3';
 import Step5 from './step5';
 import Step6 from './step6';
-import '../level.css';
+import '../level.scss';
 import './level-T4.css';
 import { Crib } from '../../crib/crib';
-
-interface ILevelProps {
-    onCompleteStep: (step: number, totalSteps: number) => void;
-    onCompleteLevel: () => void;
-    onChangeCorrectStepState: (step: number, state: string) => void;
-}
+import { ILevelProps } from '../models/ILevelProps';
 
 export default function Level({ onCompleteStep, onCompleteLevel, onChangeCorrectStepState }: ILevelProps) {
     const [activeSubStep, setActiveSubStep] = useState(0);

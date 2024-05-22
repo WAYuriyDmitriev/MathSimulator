@@ -17,11 +17,11 @@ export function NavigatePage() {
             <div className="game-field">
                 <ul className="nav-list">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/level/0"><span>Т4</span> Арифметические действия с обыкновенными
+                        <Link className="nav-link" to="/level/T4"><span>Т4</span> Арифметические действия с обыкновенными
                             дробями. Сложение</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/level/1"><span>Т5</span> Арифметические действия с обыкновенными
+                        <Link className="nav-link" to="/level/T5"><span>T5</span> Арифметические действия с обыкновенными
                             дробями. Умножение</Link>
                     </li>
                     <li className="nav-item">

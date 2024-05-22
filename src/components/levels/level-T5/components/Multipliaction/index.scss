@@ -1,0 +1,23 @@
+.multiplication-container {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  align-items: end;
+  position: relative;
+
+  .expression-number, .expression-field-container {
+    margin: 5px
+  }
+
+  .multiplication-x {
+    position: absolute;
+    top: 48px;
+    right: 138px;
+  }
+
+  .multiplication-plus {
+    position: absolute;
+    bottom: 130px;
+    left: -20px;
+  }
+}

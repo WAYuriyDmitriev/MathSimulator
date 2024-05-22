@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Expression, ExpressionFieldDiagonal } from '../../steps/expression/expression';
 import { parseExpression } from '../../../parsers';
-import { IStepProps } from './IStepProps';
+import { IStepProps } from '../models/IStepProps';
 
 export default function Step({
                                  stepIndex,

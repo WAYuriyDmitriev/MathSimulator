@@ -26,7 +26,6 @@
 .draft-popup__wrapper {
     padding: 28px;
     display: flex;
-    gap: 50px;
 }
 
 .draft-popup-close {

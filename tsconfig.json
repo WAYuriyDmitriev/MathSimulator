@@ -9,5 +9,8 @@
     "sourceMap": true,
     "moduleResolution": "node"
   },
-  "files": ["src/index.ts", "./assets.d.ts"]
+  "files": [
+    "src/index.tsx",
+    "./assets.d.ts"
+  ]
 }

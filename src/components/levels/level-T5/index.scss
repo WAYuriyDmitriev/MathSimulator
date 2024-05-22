@@ -1,0 +1,17 @@
+.drawer-button {
+  position: absolute;
+  top: 95px;
+  left: 0;
+}
+
+.shadow-box {
+  position: absolute;
+  top: 0;
+  right: -18px;
+  box-shadow: 0px 4px 10px 0px #0000001A;
+  border: 1px solid #0000001F;
+  border-radius: 24px;
+  padding: 12px 72px 22px 72px;
+
+  z-index: 99;
+}

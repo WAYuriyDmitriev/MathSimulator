@@ -1,23 +1,22 @@
 import React from 'react';
-import { Expression } from '../../steps/expression/expression';
-import { parseExpression } from '../../../parsers';
-import { IStepProps } from '../models/IStepProps';
+import { Expression } from '../../../../steps/expression/expression';
+import { parseExpression } from '../../../../../parsers';
+import { IStepProps } from '../../../models/IStepProps';
 
-export default function Step({ stepIndex, activeStep, onCompleteStep, onChangeCorrectStepState }: IStepProps) {
-    const stepData = {
-        expression: '3 $frac(2, 9) + 4 $frac(3, 7)',
-        messageTop: 'Переводим в неправильную дробь :',
-    };
+export default function Step0({
+                                 stepIndex,
+                                 activeStep,
+                                 onCompleteStep,
+                                 onChangeCorrectStepState,
+                                 isShowCrib,
+                                 fractionModels,
+                             }: IStepProps) {
+    const [left, right] = fractionModels;
+    const expression = `${left.whole} $frac(${left.dividend}, ${left.divider}) ** ${right.whole} $frac(${right.dividend}, ${right.divider})`;
     return <>
         <div className="step">
-            <div className="hint-slot hint-slot--up hint-slot--step0">
-                {stepData.messageTop &&
-                    <div className={`hint hint-up ${activeStep > stepIndex + 1 ? 'hint--inactive' : ''}`}>
-                        {stepData.messageTop}
-                    </div>}
-            </div>
             <div className="step0-expression-wrapper">
-                {activeStep <= stepIndex + 1 && <div className="step0-arrows-wrapper">
+                {activeStep === 0 && isShowCrib && <div className="step0-arrows-wrapper">
                     <div className="arrow-element arrow-element--one">
                         <div className="step0-arrow step0-arrow--one"></div>
                         <div className="step0-arrow-text step0-arrow-text--one">Числитель (Ч)</div>
@@ -32,8 +31,8 @@ export default function Step({ stepIndex, activeStep, onCompleteStep, onChangeCo
                     </div>
 
                 </div>}
-                <Expression expression={parseExpression(stepData.expression)} onChangeCorrectState={(isCorrect) => {
-                    onChangeCorrectStepState(stepIndex, isCorrect);
+                <Expression expression={parseExpression(expression)} onChangeCorrectState={(isCorrect) => {
+                    onChangeCorrectStepState?.(stepIndex, isCorrect);
                     if (isCorrect == 'correct' && activeStep == stepIndex + 1) {
                         onCompleteStep(stepIndex);
                     }
@@ -44,6 +43,6 @@ export default function Step({ stepIndex, activeStep, onCompleteStep, onChangeCo
             <div className="hint-slot hint-slot--down">
             </div>
         </div>
-        {(stepIndex < activeStep) && <div className="equal">=</div>}
+        <div className="equal">=</div>
     </>;
 }

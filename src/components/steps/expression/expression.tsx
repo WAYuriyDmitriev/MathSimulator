@@ -1,16 +1,40 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import './expression.css';
-import './expressionPassive.css';
+import React, { LegacyRef, useEffect, useMemo, useState } from 'react';
+import './expression.scss';
+import './expressionPassive.scss';
+import ExpressionDot from './expression-dot';
+import LeftBrackets from './left-bracket';
+import RightBracket from './right-bracket';
+import { useIMask } from 'react-imask';
 
-interface IExpressionField {
-    name: string,
+export interface IExpressionField {
+    name?: string,
     answer: number,
-    onChangeCorrectState: (isCorrect: string) => void
+    onChangeCorrectState?: (isCorrect: string) => void;
+    isShowCrib?: boolean;
+    cribLabel?: string;
 }
 
-export function ExpressionField({ name, answer, onChangeCorrectState }: IExpressionField) {
-    const [value, setValue] = useState('');
+export function ExpressionField({ name, answer, onChangeCorrectState, isShowCrib, cribLabel }: IExpressionField) {
     const [isCorrect, setCorrect] = useState('empty');
+    const [opts, setOpts] = useState({ mask: Number, max: 10000 });
+    const [isActive, setIsActive] = useState(false);
+    const {
+        ref,
+        maskRef,
+        value,
+        setValue,
+        unmaskedValue,
+        setUnmaskedValue,
+        typedValue,
+        setTypedValue,
+    } = useIMask(opts /* optional {
+     onAccept,
+     onComplete,
+     ref,
+     defaultValue,
+     defaultUnmaskedValue,
+     defaultTypedValue,
+     } */);
 
     useEffect(() => {
         let newIsCorrect = 'empty';
@@ -20,23 +44,35 @@ export function ExpressionField({ name, answer, onChangeCorrectState }: IExpress
 
         }
         if (isCorrect != newIsCorrect) {
-            onChangeCorrectState(newIsCorrect);
+            onChangeCorrectState?.(newIsCorrect);
             setCorrect(newIsCorrect);
         }
     }, [value, answer]);
 
     return (
-        <input type="text" onChange={(evt) => setValue(evt.target.value)} className={`expression-field  ${{
-            'empty': '',
-            'correct': 'expression-field--correct',
-            'incorrect': 'expression-field--incorrect',
-        }[isCorrect]}`}
-               onBlur={() => {
-                   if (value !== '' && answer != Number(value) && isCorrect != 'incorrect') {
-                       onChangeCorrectState('incorrect');
-                       setCorrect('incorrect');
-                   }
-               }} />
+        <>
+            <div className="expression-field-container" onFocus={() => setIsActive(true)}>
+                {isShowCrib && !value && !isActive &&
+                    <div className="expression-field-container__crib"
+                         onClick={() => (ref.current as HTMLInputElement)?.focus()}>{cribLabel}</div>}
+                <input
+                    ref={ref as LegacyRef<HTMLInputElement>}
+                    type="text"
+                    onChange={(evt) => setValue(evt.target.value)}
+                    className={`expression-field  ${{
+                        'empty': '',
+                        'correct': 'expression-field--correct',
+                        'incorrect': 'expression-field--incorrect',
+                    }[isCorrect]}`}
+                    onBlur={() => {
+                        setIsActive(false);
+                        if (value !== '' && answer != Number(value) && isCorrect != 'incorrect') {
+                            onChangeCorrectState?.('incorrect');
+                            setCorrect('incorrect');
+                        }
+                    }} />
+            </div>
+        </>
     );
 };
 
@@ -85,20 +121,34 @@ interface IExpressionSign {
 }
 
 export function ExpressionSign({ sign }: IExpressionSign) {
+    const mapComponents = new Map([
+        ['**', ExpressionDot],
+        ['(', LeftBrackets],
+        [')', RightBracket],
+    ]);
+    const SignComponent = mapComponents.get(sign);
     return (
-        <div className="expression-sign">{sign}</div>
+        <div
+            className={`expression-sign ${sign === '(' ? 'brackets--left' : sign === ')' ? 'brackets--right' : ''}`}
+        >
+            {SignComponent
+                ? <SignComponent />
+                : sign}
+        </div>
     );
-};
+}
 
 interface IExpressionNumber {
     value: number;
+    withoutBorder?: boolean;
 }
 
-export function ExpressionNumber({ value }: IExpressionNumber) {
+export function ExpressionNumber({ value, withoutBorder }: IExpressionNumber) {
     return (
-        <div className="expression-number">{Number.isNaN(value) ? '' : value}</div>
+        <div
+            className={`expression-number ${withoutBorder && 'expression-number__without-border'}`}>{Number.isNaN(value) ? '' : value}</div>
     );
-};
+}
 
 interface IExpressionFraction {
     numerator: Array<{ type: string, value: any }>,
