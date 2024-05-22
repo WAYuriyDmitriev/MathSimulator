@@ -14,17 +14,21 @@ import { IFractionModel } from '../models/IFractionModel';
 import Multiplication from './components/Multipliaction';
 
 import './index.scss';
+import MultiplicationTable from './components/MultiplicationTable';
 
 export default function LevelT5({
                                     onCompleteStep,
                                     onCompleteLevel,
                                     onChangeCorrectStepState,
                                 }: ILevelProps) {
-    const [isShowCrib, setIsShowCrib] = useState(false);
+    const [isShowCrib, setIsShowCrib] = useState(true);
     const [activeSubStep, setActiveSubStep] = useState(0);
 
     const [activeStep, setActiveStep] = useState(0);
     const [isOpenDraft, setIsOpenDraft] = useState(false);
+
+    const [multipliacationValue, setmultipliacationValue] = useState<undefined | number>();
+    const [divisionValue, setDivisionValue] = useState<undefined | number>();
 
     const fractionModels: Array<IFractionModel> = [
         {
@@ -96,7 +100,10 @@ export default function LevelT5({
                 </div>
             }
             <div className="d-flex flex-column">
-                <Crib onClick={() => setIsShowCrib(!isShowCrib)} />
+                <div className="d-flex">
+                    <Crib onClick={() => setIsShowCrib(!isShowCrib)} />
+                    <MultiplicationTable />
+                </div>
                 <div className="d-flex align-self-start align-items-center">
                     <div className="hint-slot position-relative start-0 justify-content-start pt-3 h-auto">
                         <div className={`hint ${activeStep > 1 ? 'hint--inactive' : ''}`}
@@ -153,6 +160,7 @@ export default function LevelT5({
                     {
                         [2, 3, 4, 5, 6, 7].includes(activeStep) &&
                         <Step3
+                            dividendValue={multipliacationValue}
                             fractionModel={resultFraction}
                             stepIndex={2}
                             isShowEqual={activeStep >= 5}
@@ -166,6 +174,7 @@ export default function LevelT5({
                     {
                         [5, 6, 7].includes(activeStep) &&
                         <Step3
+                            dividendValue={divisionValue}
                             fractionModel={{ divider: 10, allDividend: 473, whole: 47, dividend: 3 }}
                             stepIndex={4}
                             activeStep={activeStep}
@@ -196,6 +205,37 @@ export default function LevelT5({
                         </div>
                     }
                 </div>
+                {[2, 3, 4, 5].includes(activeStep) && <DraftPopup isOpen={isOpenDraft} onClose={() => {
+                    setIsOpenDraft(false);
+                }}>
+                    <div className="drawer-button">
+                        <button type="button" className="open-draft-button" onClick={() => {
+                            setIsOpenDraft(true);
+                        }} disabled={[0].includes(activeStep)}>Черновик
+                        </button>
+                    </div>
+                    {activeStep === 2 &&
+                        <Multiplication firstMul={firstFraction.allDividend} secondMul={secondFraction.allDividend}
+                                        onComplete={() => setmultipliacationValue(resultFraction.allDividend)} />}
+
+                    {[3, 4, 5].includes(activeStep) &&
+                        <>
+                            <Step4
+                                fractionModel={resultFraction}
+                                stepIndex={4}
+                                activeStep={activeStep}
+                                isShowCrib={isShowCrib}
+                                onCompleteStep={(index) => {
+                                    getOnCompleteStep(index);
+                                    setDivisionValue(473);
+                                }}
+                                onCompleteSubStep={getOnCompleteSubStep}
+                                onChangeCorrectStepState={getOnChangeCorrectStepState}
+                            />
+
+                        </>
+                    }
+                </DraftPopup>}
             </div>
             {[2, 3, 4, 5].includes(activeStep) &&
                 <button type="button" className="open-draft-button" onClick={() => {
@@ -203,32 +243,6 @@ export default function LevelT5({
                 }} disabled={[0].includes(activeStep)}>Черновик
                 </button>
             }
-            {[2, 3, 4, 5].includes(activeStep) && <DraftPopup isOpen={isOpenDraft} onClose={() => {
-                setIsOpenDraft(false);
-            }}>
-                <div className="drawer-button">
-                    <button type="button" className="open-draft-button" onClick={() => {
-                        setIsOpenDraft(true);
-                    }} disabled={[0].includes(activeStep)}>Черновик
-                    </button>
-                </div>
-                {activeStep === 2 &&
-                    <Multiplication firstMul={firstFraction.allDividend} secondMul={secondFraction.allDividend} />}
-                {[3, 4, 5].includes(activeStep) &&
-                    <>
-                        <Step4
-                            fractionModel={resultFraction}
-                            stepIndex={4}
-                            activeStep={activeStep}
-                            isShowCrib={isShowCrib}
-                            onCompleteStep={getOnCompleteStep}
-                            onCompleteSubStep={getOnCompleteSubStep}
-                            onChangeCorrectStepState={getOnChangeCorrectStepState}
-                        />
-
-                    </>
-                }
-            </DraftPopup>}
         </div>
     );
 };

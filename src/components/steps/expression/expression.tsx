@@ -12,9 +12,17 @@ export interface IExpressionField {
     onChangeCorrectState?: (isCorrect: string) => void;
     isShowCrib?: boolean;
     cribLabel?: string;
+    newValue?: number
 }
 
-export function ExpressionField({ name, answer, onChangeCorrectState, isShowCrib, cribLabel }: IExpressionField) {
+export function ExpressionField({
+                                    name,
+                                    answer,
+                                    onChangeCorrectState,
+                                    isShowCrib,
+                                    cribLabel,
+                                    newValue,
+                                }: IExpressionField) {
     const [isCorrect, setCorrect] = useState('empty');
     const [opts, setOpts] = useState({ mask: Number, max: 10000 });
     const [isActive, setIsActive] = useState(false);
@@ -48,6 +56,12 @@ export function ExpressionField({ name, answer, onChangeCorrectState, isShowCrib
             setCorrect(newIsCorrect);
         }
     }, [value, answer]);
+
+    useEffect(() => {
+        if (!!newValue) {
+            setValue(newValue.toString());
+        }
+    }, [newValue]);
 
     return (
         <>

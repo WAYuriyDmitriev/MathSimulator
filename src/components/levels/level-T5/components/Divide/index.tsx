@@ -57,7 +57,7 @@ export default function Divide({ onCompleteStep }: IDivideProps) {
                                          onChangeCorrectState={(state) => onchange(1, state, firstStep.current)} />
                     </div>
 
-                    {step >= 1 && <div className="slash w-100"></div>}
+                    <div className="slash w-100"></div>
                 </div>
                 <div className="vertical-slash h-100" style={{ minWidth: '2px', background: 'black' }}></div>
                 <div>
@@ -77,64 +77,52 @@ export default function Divide({ onCompleteStep }: IDivideProps) {
                     </div>
                 </div>
             </div>
-            {step >= 1 &&
-                <div className="d-flex flex-column">
-                    <div className="d-flex margin-field margin-field-tp">
-                        <div className="zero-box" />
-                        <ExpressionField answer={2}
-                                         onChangeCorrectState={(state) => onchange(0, state, secondStep.current)} />
-                        <ExpressionField answer={1}
-                                         onChangeCorrectState={(state) => onchange(1, state, secondStep.current)} />
-                    </div>
-                    {step >= 2 &&
-                        <div className="d-flex margin-field margin-field-tp">
-                            <div className="zero-box" />
-                            <ExpressionField answer={2}
-                                             onChangeCorrectState={(state) => onchange(0, state, step3.current)} />
-                            <ExpressionField answer={1}
-                                             onChangeCorrectState={(state) => onchange(1, state, step3.current)} />
-                        </div>
-                    }
 
-                    {step >= 3 && <>
-
-                        <div className="slash " style={{ marginLeft: '70px', width: '210px' }} />
-
-                        <div className="d-flex margin-field margin-field-tp">
-                            <div className="zero-box" />
-                            <div className="zero-box" />
-                            <div className="zero-box" />
-                            <ExpressionField answer={9}
-                                             onChangeCorrectState={(state) => onchange(0, state, step4.current)} />
-                        </div>
-                    </>
-                    }
-                    {step >= 4 &&
-                        <div className="d-flex margin-field margin-field-tp">
-                            <div className="zero-box" />
-                            <div className="zero-box" />
-                            <div className="zero-box" />
-                            <ExpressionField answer={9}
-                                             onChangeCorrectState={(state) => onchange(0, state, step5.current)} />
-                        </div>
-                    }
-
-                    {step >= 5 && <>
-
-                        <div className="slash " style={{ marginLeft: '210px', width: '70px' }} />
-
-                        <div className="d-flex margin-field margin-field-tp">
-                            <div className="zero-box" />
-                            <div className="zero-box" />
-                            <div className="zero-box" />
-                            <ExpressionNumber value={0} />
-                        </div>
-
-                    </>
-                    }
-
+            <div className="d-flex flex-column">
+                <div className="d-flex margin-field margin-field-tp">
+                    <div className="zero-box" />
+                    <ExpressionField answer={2}
+                                     onChangeCorrectState={(state) => onchange(0, state, secondStep.current)} />
+                    <ExpressionField answer={1}
+                                     onChangeCorrectState={(state) => onchange(1, state, secondStep.current)} />
                 </div>
-            }
+
+                <div className="d-flex margin-field margin-field-tp">
+                    <div className="zero-box" />
+                    <ExpressionField answer={2}
+                                     onChangeCorrectState={(state) => onchange(0, state, step3.current)} />
+                    <ExpressionField answer={1}
+                                     onChangeCorrectState={(state) => onchange(1, state, step3.current)} />
+                </div>
+
+                <div className="slash " style={{ marginLeft: '70px', width: '210px' }} />
+
+                <div className="d-flex margin-field margin-field-tp">
+                    <div className="zero-box" />
+                    <div className="zero-box" />
+                    <div className="zero-box" />
+                    <ExpressionField answer={9}
+                                     onChangeCorrectState={(state) => onchange(0, state, step4.current)} />
+                </div>
+                <div className="d-flex margin-field margin-field-tp">
+                    <div className="zero-box" />
+                    <div className="zero-box" />
+                    <div className="zero-box" />
+                    <ExpressionField answer={9}
+                                     onChangeCorrectState={(state) => onchange(0, state, step5.current)} />
+                </div>
+
+                <div className="slash " style={{ marginLeft: '210px', width: '70px' }} />
+
+                <div className="d-flex margin-field margin-field-tp">
+                    <div className="zero-box" />
+                    <div className="zero-box" />
+                    <div className="zero-box" />
+                    <ExpressionNumber value={0} />
+                </div>
+
+
+            </div>
         </div>
     );
 }

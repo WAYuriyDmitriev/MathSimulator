@@ -10,4 +10,5 @@ export interface IStepProps {
     fractionModels?: Array<IFractionModel>;
     fractionModel?: IFractionModel;
     isShowEqual?: boolean;
+    dividendValue?: number;
 }

@@ -6,9 +6,10 @@ import { ExpressionField, ExpressionNumber, ExpressionSign } from '../../../../s
 export interface IMultiplicationProps {
     firstMul: number;
     secondMul: number;
+    onComplete?: () => void;
 }
 
-export default function Multiplication({ firstMul, secondMul }: IMultiplicationProps) {
+export default function Multiplication({ firstMul, secondMul, onComplete }: IMultiplicationProps) {
     const firstMulString = firstMul.toString();
     const secondMulString = secondMul.toString();
 
@@ -26,6 +27,10 @@ export default function Multiplication({ firstMul, secondMul }: IMultiplicationP
         if (currentStateArray.every(Boolean)) {
             setCurrentStep(currentStep + 1);
         }
+
+        if (allStep.current.every((states) => states.every(Boolean))) {
+            onComplete?.();
+        }
     };
 
     return (
@@ -40,15 +45,15 @@ export default function Multiplication({ firstMul, secondMul }: IMultiplicationP
                 {Array.from(secondMulString).map((digit) => <ExpressionNumber value={Number(digit)} />)}
             </div>
             <div className="slash w-50" />
-            {currentStep >= 0 && <div className="d-flex">
+            <div className="d-flex">
                 {
                     Array.from(resultStrings[0]).map((digit, index) => <ExpressionField
                         answer={Number(digit)}
                         onChangeCorrectState={(isCorrect) => onchange(0, index, isCorrect)} />)
                 }
             </div>
-            }
-            {currentStep >= 1 && <div className="d-flex">
+
+            <div className="d-flex">
                 {
                     Array.from(resultStrings[1]).map((digit, index) => <ExpressionField
                         answer={Number(digit)}
@@ -56,22 +61,17 @@ export default function Multiplication({ firstMul, secondMul }: IMultiplicationP
                 }
                 <div style={{ width: '70px' }} />
             </div>
-            }
-            {
-                currentStep >= 2 && <>
-                    <div className="multiplication-plus">
-                        <ExpressionSign sign="+" />
-                    </div>
-                    <div className="slash w-100" />
-                    <div className="d-flex">
-                        {
-                            Array.from(resultStrings[2]).map((digit, index) => <ExpressionField
-                                answer={Number(digit)}
-                                onChangeCorrectState={(isCorrect) => onchange(2, index, isCorrect)} />)
-                        }
-                    </div>
-                </>
-            }
+            <div className="multiplication-plus">
+                <ExpressionSign sign="+" />
+            </div>
+            <div className="slash w-100" />
+            <div className="d-flex">
+                {
+                    Array.from(resultStrings[2]).map((digit, index) => <ExpressionField
+                        answer={Number(digit)}
+                        onChangeCorrectState={(isCorrect) => onchange(2, index, isCorrect)} />)
+                }
+            </div>
         </div>
     );
 }

@@ -10,6 +10,7 @@ export default function Step3({
                                   onChangeCorrectStepState,
                                   fractionModel,
                                   isShowEqual,
+                                  dividendValue,
                               }: IStepProps) {
     const arrayState = useRef([false, false]);
     const onchange = (index: number, isCorrect: string) => {
@@ -26,6 +27,7 @@ export default function Step3({
                 <div className="fraction">
                     <div className="dividend">
                         <ExpressionField
+                            newValue={dividendValue}
                             answer={fractionModel.allDividend}
                             onChangeCorrectState={(state) => onchange(0, state)}
                         />

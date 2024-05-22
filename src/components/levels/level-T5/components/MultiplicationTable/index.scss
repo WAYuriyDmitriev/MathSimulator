@@ -1,0 +1,54 @@
+.multiplication-table {
+  position: absolute;
+  left: 285px;
+  top: -280px;
+  z-index: 99;
+  background: white;
+
+  display: flex;
+  justify-content: space-between;
+  height: 354px;
+  width: 356px;
+
+  padding: 6px 16px;
+
+  font-family: Inter;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
+
+  .multiplication-table-row {
+    display: flex;
+
+    &:first-child {
+      padding-bottom: 20px;
+    }
+
+    > * {
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      width: 48px;
+      margin-left: 20px;
+
+
+      span {
+        padding: 1px;
+      }
+    }
+  }
+
+}
+
+.multiplication-table-container {
+  position: relative;
+  display: flex;
+  background: #39C4FF1F;
+  border-radius: 25px;
+  padding: 22px 40px;
+  z-index: 99;
+  cursor: pointer;
+}

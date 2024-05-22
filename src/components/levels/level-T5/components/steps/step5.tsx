@@ -17,7 +17,7 @@ export default function Step5({ onChangeCorrectStepState, onCompleteStep }: ISte
     return (
         <div className="d-flex margin-field">
             <ExpressionField answer={4} onChangeCorrectState={(state) => onchange(0, state)} />
-            {isShowComma && <Diagonal answer="12" />}
+            {isShowComma && <Diagonal answer="," isIncorrect />}
             <ExpressionField answer={7} onChangeCorrectState={(state) => onchange(1, state)} />
             <Diagonal answer="," onChangeCorrectState={(state: string) => onchange(2, state)} />
             <ExpressionField answer={3} onChangeCorrectState={(state) => onchange(3, state)} />
