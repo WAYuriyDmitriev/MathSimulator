@@ -232,7 +232,6 @@ header {
     border-radius: 40px;
     margin-top: 16px;
     padding: 26px 44px;
-    overflow: hidden;
 }
 .overlay {
     position: absolute;
@@ -244,9 +243,12 @@ header {
 }
 
 .draft-popup {
-    width: 100%;
+    left: -26px;
+    width: calc(100% + 52px);
     position: absolute;
     bottom: 0;
+    height: 0;
+    overflow: hidden;
     display: flex;
     justify-content: space-between;
     background-color: #fff;
@@ -257,6 +259,7 @@ header {
 .draft-popup--open {
     transform: translateY(0);
     z-index: 1000;
+    height: unset;
 }
 
 .draft-popup__wrapper {
