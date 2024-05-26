@@ -14,6 +14,10 @@ export default function Multiplication({ firstMul, secondMul, onComplete }: IMul
     const secondMulString = secondMul.toString();
 
     const resultStrings: Array<string> = Array.from(secondMulString).reverse().map((digit) => (firstMul * Number(digit)).toString());
+    const [activeState, setActiveState] = useState([
+        [...Array.from(firstMulString).map(() => false)],
+        [...Array.from(firstMulString).map(() => false)],
+    ]);
     resultStrings.push((firstMul * secondMul).toString());
     const allStep = useRef(
         Array.from(Array(resultStrings.length))
@@ -33,21 +37,41 @@ export default function Multiplication({ firstMul, secondMul, onComplete }: IMul
         }
     };
 
+    function onBlurAll() {
+        activeState.forEach((states) => states.forEach((state, indexState) => {
+            states[indexState] = false;
+        }));
+        setActiveState([...activeState]);
+    }
+
+    function onFocusField(numberResultStr: number, activeElement: number) {
+        activeState[1][secondMulString.length - 1 - numberResultStr] = true;
+
+        let activeElementNumber = Math.abs(activeElement - resultStrings[numberResultStr].length + 1);
+        activeElementNumber = activeElementNumber > firstMulString.length - 1 ? firstMulString.length - 1 : activeElementNumber;
+        activeState[0][secondMulString.length - 1 - activeElementNumber] = true;
+        setActiveState([...activeState]);
+    }
+
     return (
         <div className="multiplication-container">
             <div className="d-flex">
-                {Array.from(firstMulString).map((digit) => <ExpressionNumber value={Number(digit)} />)}
+                {Array.from(firstMulString).map((digit, index) => <ExpressionNumber value={Number(digit)}
+                                                                                    isActive={activeState[0][index]} />)}
             </div>
             <div className="multiplication-x">
                 <ExpressionSign sign="x" />
             </div>
             <div className="d-flex">
-                {Array.from(secondMulString).map((digit) => <ExpressionNumber value={Number(digit)} />)}
+                {Array.from(secondMulString).map((digit, index) => <ExpressionNumber value={Number(digit)}
+                                                                                     isActive={activeState[1][index]} />)}
             </div>
             <div className="slash w-50" />
             <div className="d-flex">
                 {
                     Array.from(resultStrings[0]).map((digit, index) => <ExpressionField
+                        onBlur={onBlurAll}
+                        onFocus={() => onFocusField(0, index)}
                         answer={Number(digit)}
                         onChangeCorrectState={(isCorrect) => onchange(0, index, isCorrect)} />)
                 }
@@ -56,6 +80,8 @@ export default function Multiplication({ firstMul, secondMul, onComplete }: IMul
             <div className="d-flex">
                 {
                     Array.from(resultStrings[1]).map((digit, index) => <ExpressionField
+                        onBlur={onBlurAll}
+                        onFocus={() => onFocusField(1, index)}
                         answer={Number(digit)}
                         onChangeCorrectState={(isCorrect) => onchange(1, index, isCorrect)} />)
                 }

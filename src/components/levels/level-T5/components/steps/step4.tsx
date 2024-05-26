@@ -3,6 +3,8 @@ import { IStepProps } from '../../../models/IStepProps';
 import { ExpressionField, ExpressionNumber, ExpressionSign } from '../../../../steps/expression/expression';
 import '../../../level.scss';
 import Divide from '../Divide';
+import MsButton from '../../../../steps/expression/msButton';
+import { ErrorPopup } from '../../../../messagePopup/messagePopup';
 
 export default function Step4({
                                   stepIndex,
@@ -12,6 +14,7 @@ export default function Step4({
                                   fractionModel,
                               }: IStepProps) {
     const arrayState = useRef([false, false]);
+    const [buttonState, setButtonState] = useState([false, false]);
     const [subStep, setSubStep] = useState(0);
     const onchange = (index: number, isCorrect: string) => {
         arrayState.current[index] = isCorrect == 'correct';
@@ -21,6 +24,19 @@ export default function Step4({
             setSubStep(subStep + 1);
         }
     };
+
+    function onButtonClick(index: number) {
+        debugger
+        if (index === 0) {
+            buttonState[index] = true;
+            buttonState[1] = false;
+            setSubStep(2);
+        } else {
+            buttonState[index] = !buttonState[index];
+        }
+
+        setButtonState([...buttonState]);
+    }
 
     const allDividendString = fractionModel.allDividend.toString();
     return <>
@@ -77,24 +93,48 @@ export default function Step4({
                 </div>
             </div>
         </div>
-        {subStep === 1 && <>
-            <div className="orange-box ms-5 mt-4">
-                Значит 1419 делится на 3<br />
-                и 30 делится на 3
+        {[1, 2].includes(subStep) && <>
+            <div className="ms-5 mt-4 d-flex flex-column">
+                <div className="d-flex">
+                    <div className="orange-box ps-2 pe-2 fw-bold">
+                        15 делится на 3?
+                    </div>
 
-            </div>
-            <div className="position-absolute end-0 bottom-0">
-                <button type="button" className="btn btn-warning " onClick={() => {
-                    setSubStep(subStep + 1);
-                    onCompleteStep(3);
+                    <MsButton className="ms-4" onClick={() => onButtonClick(0)} isGreen={buttonState[0]}>Да</MsButton>
+                    {subStep === 1 &&
+                        <MsButton className="ms-2" onClick={() => onButtonClick(1)}
+                                  isRed={buttonState[1]}>Нет</MsButton>}
+                </div>
+                <div className="ms-5 position-relative message-popup-step4">
+                    {
+                        buttonState[1] && <ErrorPopup />
+                    }
+                    {subStep === 2 && <>
+                        <div className="orange-box ms-5 mt-4">
+                            Значит 1419 делится на 3<br />
+                            и 30 делится на 3
+
+                        </div>
+                    </>
+                    }
+                </div>
+                {[2, 4].includes(subStep) && <div className="position-absolute end-0 bottom-0">
+                    <button type="button" className="btn btn-warning " onClick={() => {
+                        setSubStep(subStep + 1);
+                        onCompleteStep(3);
+                    }
+                    }>
+                        Продолжить
+                    </button>
+                </div>
                 }
-                }>
-                    Продолжить
-                </button>
             </div>
         </>
         }
-        {subStep === 2 && <Divide onCompleteStep={()=>onCompleteStep(4)} />
+        {subStep >= 3 && <Divide onCompleteStep={() => {
+            onCompleteStep(4);
+            setSubStep(4);
+        }} />
         }
     </>;
 }

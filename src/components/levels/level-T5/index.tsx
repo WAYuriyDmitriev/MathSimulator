@@ -27,7 +27,7 @@ export default function LevelT5({
     const [activeStep, setActiveStep] = useState(0);
     const [isOpenDraft, setIsOpenDraft] = useState(false);
 
-    const [multipliacationValue, setmultipliacationValue] = useState<undefined | number>();
+    const [multiplicationValue, setMultiplicationValue] = useState<undefined | number>();
     const [divisionValue, setDivisionValue] = useState<undefined | number>();
 
     const fractionModels: Array<IFractionModel> = [
@@ -62,7 +62,7 @@ export default function LevelT5({
         setActiveStep(last => Math.max(index + 1, last));
         onCompleteStep(nextStep, 10);
         if ([2, 3, 4].includes(nextStep)) {
-            setIsOpenDraft(true);
+            setTimeout(() => setIsOpenDraft(true), 1000);
         }
         if (nextStep == 10) {
             onCompleteLevel();
@@ -160,7 +160,7 @@ export default function LevelT5({
                     {
                         [2, 3, 4, 5, 6, 7].includes(activeStep) &&
                         <Step3
-                            dividendValue={multipliacationValue}
+                            dividendValue={multiplicationValue}
                             fractionModel={resultFraction}
                             stepIndex={2}
                             isShowEqual={activeStep >= 5}
@@ -216,7 +216,7 @@ export default function LevelT5({
                     </div>
                     {activeStep === 2 &&
                         <Multiplication firstMul={firstFraction.allDividend} secondMul={secondFraction.allDividend}
-                                        onComplete={() => setmultipliacationValue(resultFraction.allDividend)} />}
+                                        onComplete={() => setMultiplicationValue(resultFraction.allDividend)} />}
 
                     {[3, 4, 5].includes(activeStep) &&
                         <>

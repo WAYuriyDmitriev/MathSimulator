@@ -48,6 +48,10 @@
     width: 30px;
     height: 36px;
   }
+
+  &__active {
+    border: 1px solid #FFB84D
+  }
 }
 
 .expression-sign {
@@ -131,6 +135,11 @@
   position: relative;
 
   &__crib {
+    font-family: Transforma Script_Trial, serif;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 32px;
+
     position: absolute;
     top: 20px;
     width: 100%;

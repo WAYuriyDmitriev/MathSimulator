@@ -28,7 +28,8 @@
 }
 
 .draft-popup__wrapper {
-    padding: 28px;
+    padding: 28px 28px 0 28px;
+    margin-bottom: 28px;
     display: flex;
 }
 

@@ -13,6 +13,8 @@ export interface IExpressionField {
     isShowCrib?: boolean;
     cribLabel?: string;
     newValue?: number
+    onFocus?: () => void;
+    onBlur?: () => void;
 }
 
 export function ExpressionField({
@@ -22,6 +24,8 @@ export function ExpressionField({
                                     isShowCrib,
                                     cribLabel,
                                     newValue,
+                                    onFocus,
+                                    onBlur,
                                 }: IExpressionField) {
     const [isCorrect, setCorrect] = useState('empty');
     const [opts, setOpts] = useState({ mask: Number, max: 10000 });
@@ -62,6 +66,10 @@ export function ExpressionField({
             setValue(newValue.toString());
         }
     }, [newValue]);
+
+    useEffect(() => {
+        isActive ? onFocus?.() : onBlur?.();
+    }, [isActive]);
 
     return (
         <>
@@ -155,12 +163,13 @@ export function ExpressionSign({ sign }: IExpressionSign) {
 interface IExpressionNumber {
     value: number;
     withoutBorder?: boolean;
+    isActive?: boolean;
 }
 
-export function ExpressionNumber({ value, withoutBorder }: IExpressionNumber) {
+export function ExpressionNumber({ value, withoutBorder, isActive }: IExpressionNumber) {
     return (
         <div
-            className={`expression-number ${withoutBorder && 'expression-number__without-border'}`}>{Number.isNaN(value) ? '' : value}</div>
+            className={`expression-number ${withoutBorder && 'expression-number__without-border'} ${isActive ? 'expression-number__active' : ''}`}>{Number.isNaN(value) ? '' : value}</div>
     );
 }
 
