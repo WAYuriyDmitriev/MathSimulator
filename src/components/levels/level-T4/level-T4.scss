@@ -1,0 +1,215 @@
+.step3-expression-wrapper {
+  position: relative;
+}
+
+.arrows-diagonal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.arrow-diagonal {
+  position: absolute;
+  bottom: 87px;
+  width: 58%;
+  height: 58%;
+  background-image: url("../../../assets/icons/arrow-diagonal.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.arrow-diagonal--left {
+  transform-origin: center center;
+  transform: scale(-1, 1);
+  right: 26px;
+}
+
+.arrow-diagonal--right {
+  left: 26px;
+}
+
+.step3-diagonal-fields {
+  width: calc(100% + 10px);
+  left: -5px;
+  position: relative;
+  top: -28px;
+  height: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hint-slot--step0 {
+  width: 100%;
+  left: 0;
+  transform: translate(0, -100%);
+}
+
+.hint-slot--step3--bottom {
+  width: 55%;
+}
+
+.hint-slot--step3-top {
+  width: 100%;
+}
+
+.hint-slot--step4 {
+  width: 100%;
+}
+
+.hint-slot--step6 {
+  width: 140%;
+}
+
+.hint-lines {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  bottom: 0;
+}
+
+.hint-line {
+  position: absolute;
+  width: 39px;
+  height: 46px;
+  background-image: url("../../../assets/icons/line.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.hint-line--top-left {
+  left: calc(50% + 25px);
+}
+
+.hint-line--top-right {
+  right: calc(50% + 25px);
+  transform: scale(-1, 1);
+}
+
+.hint-line--bottom-left {
+  left: calc(50% + -56px);
+  top: -98px;
+}
+
+.hint-line--bottom-right {
+  right: calc(50% + -56px);
+  top: -98px;
+  transform: scaleY(-1);
+}
+
+.open-draft-button {
+  position: absolute;
+  bottom: 0;
+  width: 103px;
+  padding: 16px 12px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: #000;
+  background-color: #FFB84D;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.open-draft-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.step0-expression-wrapper {
+  position: relative;
+}
+
+.step0-arrows-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.arrow-element {
+  position: absolute;
+}
+
+.arrow-element--one {
+  width: 150px;
+  top: -45px;
+  left: 44px;
+}
+
+.arrow-element--two {
+  width: 106px;
+  top: 97px;
+  left: -22px;
+}
+
+.arrow-element--three {
+  width: 172px;
+  top: 133px;
+  left: 53px;
+}
+
+.step0-arrow {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background-image: url("../../../assets/icons/arrow-1step.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  transform-origin: left center;
+}
+
+.step0-arrow--one {
+  transform: rotate(118deg);
+  left: 21px;
+  top: 11px;
+}
+
+.step0-arrow--two {
+  transform: rotate(294deg);
+  left: 21px;
+  top: -7px
+}
+
+.step0-arrow--three {
+  position: relative;
+  top: -11px;
+  width: 67px;
+  height: 2px;
+  background-color: #FFB84D;
+  left: -2px;
+  display: block;
+  transform: rotate(226deg);
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 2px;
+    top: -4.5px;
+    right: -3px;
+    background-color: #FFB84D;
+    transform: rotate(45deg);
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 2px;
+    top: 4.5px;
+    right: -3px;
+    background-color: #FFB84D;
+    transform: rotate(-45deg);
+  }
+}
+
+.step0-arrow-text {
+  font-size: 20px;
+  line-height: 36px;
+  font-weight: bold;
+  opacity: 0.6;
+}
+
+.full-expression-wrapper {
+  padding-top: 40px;
+}

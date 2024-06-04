@@ -7,7 +7,7 @@ import Step3 from './components/steps/step3';
 import Step4 from './components/steps/step4';
 import Step5 from './components/steps/step5';
 import '../level.scss';
-import '../level-T4/level-T4.css';
+import '../level-T4/level-T4.scss';
 import { Crib } from '../../crib/crib';
 import { ILevelProps } from '../models/ILevelProps';
 import { IFractionModel } from '../models/IFractionModel';
@@ -87,8 +87,8 @@ export default function LevelT5({
                     <div className="color-yellow pb-2">Признак делимости</div>
                     <div className="text-start">
                         <div><span className="color-yellow">на 2 :</span> оканчивается 0 ; четное</div>
-                        <div><span className="color-yellow">на 3 :</span> оканчивается 0 ; 5</div>
-                        <div><span className="color-yellow">на 5 :</span> сумма цифр <span
+                        <div><span className="color-yellow">на 5 :</span> оканчивается 0 ; 5</div>
+                        <div><span className="color-yellow">на 3 :</span> сумма цифр <span
                             className="color-yellow">делим</span> на 3
                         </div>
                         <div><span className="color-yellow">на 9 :</span> сумма цифр <span
@@ -163,7 +163,7 @@ export default function LevelT5({
                             dividendValue={multiplicationValue}
                             fractionModel={resultFraction}
                             stepIndex={2}
-                            isShowEqual={activeStep >= 5}
+                            isShowEqual={activeStep >= 3}
                             activeStep={activeStep}
                             isShowCrib={isShowCrib}
                             onCompleteStep={() => getOnCompleteStep(2)}
@@ -172,7 +172,7 @@ export default function LevelT5({
                         />
                     }
                     {
-                        [5, 6, 7].includes(activeStep) &&
+                        [3,4,5, 6, 7].includes(activeStep) &&
                         <Step3
                             dividendValue={divisionValue}
                             fractionModel={{ divider: 10, allDividend: 473, whole: 47, dividend: 3 }}

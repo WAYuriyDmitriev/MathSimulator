@@ -26,7 +26,7 @@ export default function Step0({
                         <div className="step0-arrow-text step0-arrow-text--two">Целое Число (ЦЧ)</div>
                     </div>
                     <div className="arrow-element arrow-element--three">
-                        <div className="step0-arrow step0-arrow--three"></div>
+                        <div className="step0-arrow--three"></div>
                         <div className="step0-arrow-text step0-arrow-text--three">Знаменатель (З)</div>
                     </div>
 

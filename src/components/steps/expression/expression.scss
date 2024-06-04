@@ -50,7 +50,17 @@
   }
 
   &__active {
-    border: 1px solid #FFB84D
+    animation: 1s linear 0.2s infinite alternate Blink;
+  }
+}
+
+@keyframes Blink {
+  0% {
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+
+  100% {
+    border-color: #FFB84D;
   }
 }
 
@@ -136,13 +146,14 @@
 
   &__crib {
     font-family: Transforma Script_Trial, serif;
-    font-size: 24px;
+    font-size: 14px;
     font-weight: 300;
-    line-height: 32px;
+    line-height: 15px;
+    text-align: center;
+    hyphens: auto;
 
     position: absolute;
     top: 20px;
-    width: 100%;
-    text-align: center;
+    width: 72px;
   }
 }

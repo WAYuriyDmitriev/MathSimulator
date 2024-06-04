@@ -30,14 +30,14 @@ export default function Step1({
                 <div className="fraction">
                     <div className="dividend">
                         <ExpressionSign sign="(" />
-                        <ExpressionField isShowCrib={isShowCrib} cribLabel="ЦЧ" answer={left.whole}
+                        <ExpressionField isShowCrib={isShowCrib} cribLabel="целое число" answer={left.whole}
                                          onChangeCorrectState={(state) => onchange(0, state)} />
                         <ExpressionSign sign="*" />
-                        <ExpressionField isShowCrib={isShowCrib} cribLabel="З" answer={left.divider}
+                        <ExpressionField isShowCrib={isShowCrib} cribLabel="знаме-натель" answer={left.divider}
                                          onChangeCorrectState={(state) => onchange(1, state)} />
                         <ExpressionSign sign=")" />
                         <ExpressionSign sign="+" />
-                        <ExpressionField isShowCrib={isShowCrib} cribLabel="Ч" answer={left.dividend}
+                        <ExpressionField isShowCrib={isShowCrib} cribLabel="числи-тель" answer={left.dividend}
                                          onChangeCorrectState={(state) => onchange(2, state)} />
                     </div>
                     <div className="slash w-100" />
@@ -51,14 +51,14 @@ export default function Step1({
                 <div className="fraction">
                     <div className="dividend">
                         <ExpressionSign sign="(" />
-                        <ExpressionField isShowCrib={isShowCrib} cribLabel="ЦЧ" answer={right.whole}
+                        <ExpressionField isShowCrib={isShowCrib} cribLabel="целое число" answer={right.whole}
                                          onChangeCorrectState={(state) => onchange(3, state)} />
                         <ExpressionSign sign="*" />
-                        <ExpressionField isShowCrib={isShowCrib} cribLabel="З" answer={right.divider}
+                        <ExpressionField isShowCrib={isShowCrib} cribLabel="знаме-натель" answer={right.divider}
                                          onChangeCorrectState={(state) => onchange(4, state)} />
                         <ExpressionSign sign=")" />
                         <ExpressionSign sign="+" />
-                        <ExpressionField isShowCrib={isShowCrib} cribLabel="Ч" answer={right.dividend}
+                        <ExpressionField isShowCrib={isShowCrib} cribLabel="числи-тель" answer={right.dividend}
                                          onChangeCorrectState={(state) => onchange(5, state)} />
                     </div>
                     <div className="slash w-100" />
